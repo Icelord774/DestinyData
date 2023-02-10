@@ -1,16 +1,25 @@
-# This is a sample Python script.
+import requests
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Your API key
+api_key = "207ffa2b218540719501f16ea1551620"
 
+# The endpoint URL
+endpoint = "/Platform/Destiny2/Stats/Definition/"
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Add your API key to the headers
+headers = {
+    "X-API-Key": api_key
+}
 
+# Make the API request
+response = requests.get(endpoint, headers=headers)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Check the status code of the response
+if response.status_code == 200:
+    # Parse the JSON data
+    data = response.json()
+    # Do something with the data
+    print(data)
+else:
+    # Handle the error
+    print("An error occurred:", response.text)
